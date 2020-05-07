@@ -102,7 +102,33 @@
 
     <profiles>
         <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+                <property>
+                    <name>!use-nexus</name>
+                </property>
+            </activation>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>draagon-snapshots</id>
+                    <name>draagon-snapshots</name>
+                    <url>http://build.draagon.com:8081/artifactory/libs-snapshot-local</url>
+                </snapshotRepository>
+                <repository>
+                    <id>draagon-central</id>
+                    <name>draagon-releases</name>
+                    <url>http://build.draagon.com:8081/artifactory/libs-release-local</url>
+                </repository>
+            </distributionManagement>
+        </profile>
+        <profile>
             <id>nexus</id>
+            <activation>
+                <property>
+                    <name>use-nexus</name>
+                </property>
+            </activation>
             <build>
                 <plugins>
                     <plugin>

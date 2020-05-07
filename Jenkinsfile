@@ -13,16 +13,27 @@ pipeline {
                 '''
             }
         }
-
         stage ('Build') {
             steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
+                sh 'mvn clean package -Dmaven.test.failure.ignore=false'
             }
-            //post {
-                //success {
-                    // junit 'target/surefire-reports/**/*.xml' 
-                //}
-            //}
+        }
+        stage ('Deploy') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'mvn deploy'
+            }
+        }
+        stage ('Release') {
+            when {
+                branch 'master'
+            }
+            steps {
+                sh 'mvn release:prepare -Pnexus'
+                sh 'mvn release:perform -Pnexus'
+            }
         }
     }
 }
