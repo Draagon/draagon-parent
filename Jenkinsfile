@@ -34,6 +34,6 @@ pipeline {
         //        sh 'mvn release:prepare -Pnexus'
         //        sh 'mvn release:perform -Pnexus'
         //    }
-        }
+        //}
     }
 }
