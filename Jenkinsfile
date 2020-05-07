@@ -26,14 +26,14 @@ pipeline {
                 sh 'mvn deploy'
             }
         }
-        stage ('Release') {
-            when {
-                branch 'master'
-            }
-            steps {
-                sh 'mvn release:prepare -Pnexus'
-                sh 'mvn release:perform -Pnexus'
-            }
+        //stage ('Release') {
+        //    when {
+        //        branch 'master'
+        //    }
+        //    steps {
+        //        sh 'mvn release:prepare -Pnexus'
+        //        sh 'mvn release:perform -Pnexus'
+        //    }
         }
     }
 }
