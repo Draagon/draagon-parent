@@ -25,20 +25,27 @@ pipeline {
                 sh 'mvn deploy'
             }
         }
-        boolean release = false
-        when {
-            branch 'master'
-        }
-        stage("Release confirmation") {
-            timeout(time: 1, unit: 'MINUTES') {
-                input 'Release to Central?'
-                release = true
+
+        stage("Release") {
+            when {
+                branch 'master'
             }
-        }
-        if (release) {
-            stage("Release") {
-                mvn 'release:prepare -Pnexus'
-                mvn 'release:perform -Pnexus'
+            timeout(time: 1, unit: 'MINUTES') {
+                def release = input( message: 'Release to Central?', ok: 'Yes',
+                                     parameters: [booleanParam(defaultValue: true,
+                                        description: 'If you want to perform a maven release, press yes',
+                                        name: 'Yes?')])
+                if ( release ) {
+                    steps {
+                        mvn 'release:prepare -Pnexus'
+                        mvn 'release:perform -Pnexus'
+                    }
+                }
+                //input  { message 'Release to Central?' }
+                //steps {
+                //    mvn 'release:prepare -Pnexus'
+                //    mvn 'release:perform -Pnexus'
+                //}
             }
         }
     }
