@@ -19,7 +19,7 @@ pipeline {
         }
         stage ('Deploy') {
             when {
-                branch 'master'
+                branch 'staging'
             }
             steps {
                 sh 'mvn deploy'
@@ -31,8 +31,8 @@ pipeline {
                 branch 'master'
             }
             steps {
-                mvn 'release:prepare -Pnexus'
-                mvn 'release:perform -Pnexus'
+                sh 'mvn release:prepare -Pnexus'
+                sh 'mvn release:perform -Pnexus'
             }
         }
     }
