@@ -25,14 +25,21 @@ pipeline {
                 sh 'mvn deploy'
             }
         }
-        //stage ('Release') {
-        //    when {
-        //        branch 'master'
-        //    }
-        //    steps {
-        //        sh 'mvn release:prepare -Pnexus'
-        //        sh 'mvn release:perform -Pnexus'
-        //    }
-        //}
+        boolean release = false
+        when {
+            branch 'master'
+        }
+        stage("Release confirmation") {
+            timeout(time: 1, unit: 'MINUTES') {
+                input 'Release to Central?'
+                release = true
+            }
+        }
+        if (release) {
+            stage("Release") {
+                mvn 'release:prepare -Pnexus'
+                mvn 'release:perform -Pnexus'
+            }
+        }
     }
 }
