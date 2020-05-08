@@ -32,17 +32,17 @@ pipeline {
             }
             steps {
               timeout(time: 1, unit: 'MINUTES') {
-                def release = input( message: 'Release to Central?', ok: 'Yes',
-                                     parameters: [booleanParam(defaultValue: true,
-                                        description: 'If you want to perform a maven release, press yes',
-                                        name: 'Yes?')])
-                if ( release ) {
+                input( message: 'Release to Central?', ok: 'Yes') //,
+                                     //parameters: [booleanParam(defaultValue: true,
+                                     //   description: 'If you want to perform a maven release, press yes',
+                                     //   name: 'Yes?')])
+                //if ( release ) {
                     steps {
                           sh 'echo "Performing Release"'
             //            mvn 'release:prepare -Pnexus'
             //            mvn 'release:perform -Pnexus'
                     }
-                }
+                //}
                 //input  {
                 //    message 'Release to Central?'
                 //}
