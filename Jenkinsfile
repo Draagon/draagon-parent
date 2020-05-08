@@ -30,7 +30,8 @@ pipeline {
             when {
                 branch 'master'
             }
-            //timeout(time: 1, unit: 'MINUTES') {
+            steps {
+              timeout(time: 1, unit: 'MINUTES') {
             //    def release = input( message: 'Release to Central?', ok: 'Yes',
             //                         parameters: [booleanParam(defaultValue: true,
             //                            description: 'If you want to perform a maven release, press yes',
@@ -49,7 +50,8 @@ pipeline {
                     //mvn 'release:prepare -Pnexus'
                     //mvn 'release:perform -Pnexus'
                 }
-            //}
+              }
+            }
         }
     }
 }
