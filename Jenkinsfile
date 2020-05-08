@@ -1,9 +1,13 @@
 pipeline {
     agent any
-    //tools {
-    //    maven 'Maven 3.5.4'
-    //    jdk 'jdk8'
-    //}
+    tools {
+        maven 'Maven'
+        jdk 'jdk8'
+    }
+    options {
+         timestamps()
+         ansiColor("xterm")
+    }
     stages {
         stage ('Initialize') {
             steps {
