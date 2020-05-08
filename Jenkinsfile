@@ -1,12 +1,7 @@
 pipeline {
     agent any
-    tools {
-        maven 'Maven'
-        jdk 'jdk8'
-    }
     options {
          timestamps()
-         ansiColor("xterm")
     }
     stages {
         stage ('Initialize') {
