@@ -10,7 +10,7 @@
     
     <groupId>com.draagon</groupId>
     <artifactId>draagon-parent</artifactId>
-    <version>4.0.4-SNAPSHOT</version>
+    <version>4.0.4</version>
     <packaging>pom</packaging>
 
     <name>Draagon Parent Pom</name>
@@ -21,7 +21,7 @@
         <connection>scm:git:git://github.com/Draagon/draagon-parent.git</connection>
         <developerConnection>scm:git:git@github.com:Draagon/draagon-parent.git</developerConnection>
         <url>https://github.com/Draagon/draagon-parent</url>
-        <tag>HEAD</tag>
+        <tag>draagon-parent-4.0.4</tag>
     </scm>
     
     <organization>
